@@ -39,11 +39,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const model = new ChatOpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      modelName: 'gpt-3.5-turbo',
-      maxTokens: 500,
-    });
+    export const model = new ChatOpenAI({
+      configuration:{
+          baseURL: "https://api.groq.com/openai/v1",
+          apiKey: process.env.OPENAI_API_KEY,
+      },
+      model: "llama3-70b-8192",
+      maxConcurrency: 10
+  })
 
     const parser = new JsonOutputFunctionsParser();
     const extractionFunctionSchema = {
