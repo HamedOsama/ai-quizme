@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    export const model = new ChatOpenAI({
+    const model = new ChatOpenAI({
       configuration:{
           baseURL: "https://api.groq.com/openai/v1",
           apiKey: process.env.OPENAI_API_KEY,
